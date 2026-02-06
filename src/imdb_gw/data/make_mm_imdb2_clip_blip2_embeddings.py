@@ -42,8 +42,7 @@ from tqdm import tqdm
 import torch
 
 # ---------------- Config ----------------
-DATA_DIR = Path(os.environ.get("MMIMDB_DIR",
-    "/home/rbertin/attention/imdb/unzipped_imdb/imdb/dataset"))
+DATA_DIR = Path(os.environ.get("MMIMDB_DIR", "./data/imdb2/unzipped_imdb/imdb/dataset"))
 
 CLIP_MODEL_ID_IMG = "openai/clip-vit-base-patch32"  # pooled image features
 CLIP_TEXT_ID      = os.environ.get("CLIP_MODEL_ID_TXT", "sentence-transformers/clip-ViT-B-32-multilingual-v1")

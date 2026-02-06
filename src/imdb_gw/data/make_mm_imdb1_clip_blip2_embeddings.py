@@ -17,9 +17,9 @@ import torch
 from torchvision import transforms as T
 from torchvision.transforms import InterpolationMode
 
-# ---------------- Hardcoded Config ----------------
-DATA_DIR   = Path("/home/rbertin/attention/imdb1/unzipped_imdb/imdb/dataset")
-OUT_DIR    = Path("/home/rbertin/attention/imdb1/embeddings_clip_blip2_aug70")
+# ---------------- Config (env-overridable) ----------------
+DATA_DIR   = Path(os.getenv("MMIMDB1_DATASET_DIR", "./data/imdb1/dataset"))
+OUT_DIR    = Path(os.getenv("EMB_OUT_DIR", "./data/embeddings_clip_blip2_aug70"))
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OUT_PREFIX = "mm_imdb1_globals_aug70"

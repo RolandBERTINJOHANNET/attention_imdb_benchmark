@@ -26,14 +26,14 @@ from typing import List, Tuple, Dict
 import numpy as np
 from tqdm import tqdm
 
-# ---------------- Hardcoded Config ----------------
-DATA_DIR        = Path("/home/rbertin/attention/imdb1/unzipped_imdb/imdb/dataset")
-OUT_DIR         = Path("/home/rbertin/attention/imdb1/embeddings_clip_blip2_aug70")
+# ---------------- Config (env-overridable) ----------------
+DATA_DIR        = Path(os.getenv("MMIMDB1_DATASET_DIR", "./data/imdb1/dataset"))
+OUT_DIR         = Path(os.getenv("EMB_OUT_DIR", "./data/embeddings_clip_blip2_aug70"))
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 OUT_PREFIX      = "mm_imdb1_globals_aug70"
 
-LABELS_DIR_23   = Path("/home/rbertin/attention/imdb1/labels_23")
+LABELS_DIR_23   = Path(os.getenv("IMDB1_LABELS_DIR_23", "./data/labels_23"))
 LABELS_ALL_NPY  = LABELS_DIR_23 / "labels_all_23.npy"
 IDS_ALL_TXT     = LABELS_DIR_23 / "ids_all.txt"
 

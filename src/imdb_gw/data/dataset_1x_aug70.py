@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # dataset_1x_aug70.py — IMDB 1.0 latents datamodule (CLIP/BLIP2 backbones, aug-70 views)
 # Adds OPTIONAL labels modality built ON-THE-FLY from base labels:
-#  - Loads /home/rbertin/attention/imdb1/labels_23/{labels_all_23.npy, ids_all.txt}
+#  - Loads labels_all_23.npy, ids_all.txt (path via env IMDB1_LABELS_DIR_23)
 #  - Reorders to extractor's orig_idx (lexicographic dataset stems)
 #  - Duplicates each label vector across all 70 views so it index-aligns with image/text.
 # Also adds two *mirror* modalities for clean targets:
@@ -23,10 +23,9 @@ from lightning.pytorch.utilities.combined_loader import CombinedLoader
 # ──────────────────────────────────────────────────────────────────────────────
 # Paths
 # ──────────────────────────────────────────────────────────────────────────────
-OTHER_BACKBONES_DIR = Path(os.getenv(
-    "OTHER_BACKBONES_DIR_IMDB1_AUG70",
-    "/home/rbertin/attention/imdb1/embeddings_clip_blip2_aug70"
-)).resolve()
+OTHER_BACKBONES_DIR = Path(
+    os.getenv("OTHER_BACKBONES_DIR_IMDB1_AUG70", "./data/embeddings_clip_blip2_aug70")
+).resolve()
 
 DEFAULT_CLIP_IMAGE   = OTHER_BACKBONES_DIR / "mm_imdb1_globals_aug70_clip_image.npy"
 DEFAULT_CLIP_TEXT    = OTHER_BACKBONES_DIR / "mm_imdb1_globals_aug70_clip_text.npy"
@@ -37,18 +36,12 @@ IMAGE_LATENTS_PATH      = os.getenv("MMIMDB_IMAGE_LATENTS", str(DEFAULT_CLIP_IMA
 CAPTION_EMBEDDINGS_PATH = os.getenv("MMIMDB_TEXT_EMBEDS",  str(DEFAULT_CLIP_TEXT))
 
 # Base labels directory (23-class, multi-label, one row per ORIGINAL sample)
-LABELS_DIR_23 = Path(os.getenv(
-    "IMDB1_LABELS_DIR_23",
-    "/home/rbertin/attention/imdb1/labels_23"
-)).resolve()
+LABELS_DIR_23 = Path(os.getenv("IMDB1_LABELS_DIR_23", "./data/labels_23")).resolve()
 LABELS_ALL_23_NPY = LABELS_DIR_23 / "labels_all_23.npy"
 IDS_ALL_TXT       = LABELS_DIR_23 / "ids_all.txt"
 
 # IMDB1 raw data root (images/json + split.json)
-IMDB1_DIR = Path(os.getenv(
-    "MMIMDB1_DIR",
-    "/home/rbertin/attention/imdb1/unzipped_imdb/imdb"
-)).resolve()
+IMDB1_DIR = Path(os.getenv("MMIMDB1_DIR", "./data/imdb1/unzipped_imdb/imdb")).resolve()
 DATASET_DIR = IMDB1_DIR / "dataset"
 SPLIT_JSON  = IMDB1_DIR / "split.json"
 
