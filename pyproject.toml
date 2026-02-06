@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "imdb-benchmark-gw-attention"
+version = "0.1.0"
+description = "Benchmarking Global Workspace with attention on IMDB latents"
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "imdb_gw", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+shimmer = { git = "ssh://git@github.com/ruflab/shimmer.git", rev = "main" }
+torch = "2.8.0"
+torchvision = "0.23.0"
+torchmetrics = "1.6.1"
+lightning = "2.5.0.post0"
+numpy = "1.26.4"
+scipy = "1.16.1"
+pandas = "2.2.3"
+scikit-learn = "1.7.1"
+tqdm = "4.67.1"
+matplotlib = "3.10.0"
+click = "8.1.8"
+accelerate = "1.10.1"
+transformers = "4.55.4"
+tokenizers = "0.21.4"
+sentence-transformers = "5.1.1"
+timm = "1.0.20"
+huggingface-hub = "0.34.4"
+safetensors = "0.6.2"
+regex = "2025.7.34"
+migrate-ckpt = { git = "https://github.com/ruflab/migrate-ckpt.git", rev = "v0.2.0" }
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.7"
+mypy = "^1.12"
+pytest = "^8.2"
+
+[tool.poetry.scripts]
+orchestrate-attgw = "imdb_gw.training.final_orchestrator:main"
+# train-gw = "imdb_gw.cli:train_gw"
+# orchestrate-attgw = "imdb_gw.cli:orchestrate_attgw"
+
+[build-system]
+requires = ["poetry-core>=1.8.0"]
+build-backend = "poetry.core.masonry.api"

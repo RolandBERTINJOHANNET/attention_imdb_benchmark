@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+.python-version
+.venv/
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# Data & outputs
+/data/
+/outputs/
+/checkpoints/
+/logs/
+/wandb/
+*.npy
+*.npz
+*.ckpt
+*.pt
+*.pth
+
+# Misc
+.DS_Store
