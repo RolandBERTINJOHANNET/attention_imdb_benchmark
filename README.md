@@ -1,6 +1,4 @@
-# imdb_benchmark_gw_attention
-
-Minimal code to reproduce the ATT-GW orchestrator run on IMDB1 aug-70 latents.
+Reproduce the mmm-imdb benchmark results from the paper "An Attention Mechanism for Robust Multimodal Integration in a Global Workspace Architecture"
 
 ## Install
 - Python 3.11
@@ -13,7 +11,7 @@ You can generate the four embedding `.npy` files with the provided scripts; set 
 - Labels dir (contains `labels_all_23.npy`, `ids_all.txt`): `IMDB1_LABELS_DIR_23`
 Defaults are in `imdb_gw/data/dataset_1x_aug70.py`; override via env vars or `example.env`.
 
-## Run the target command
+## Run the command to replicate the numbers
 ```bash
 poetry run orchestrate-attgw
 # or
@@ -28,15 +26,3 @@ O.orchestrate_attgw(
 )
 PY
 ```
-
-## Included code
-- Orchestrator: `imdb_gw/training/final_orchestrator.py`
-- Train one run: `imdb_gw/training/function_train_attgw.py`
-- Eval: `imdb_gw/training/function_eval_attgw.py`
-- Data prep: `imdb_gw/data/dataset_1x_aug70.py`
-- Optional generators: `make_mm_imdb1_clip_blip2_embeddings.py`, `make_mm_imdb2_clip_blip2_embeddings.py`
-- Label prep: `augment_labels.py`
-- Domains: `imdb_gw/domains/domains_obb.py`
-- Shimmer monkeypatches: `imdb_gw/overrides/shimmer_patches.py`
-
-Notes: CUDA required; WandB removed (CSV/ckpt logging only).
